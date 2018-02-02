@@ -1,0 +1,38 @@
+			<div class="modal-footer">
+				<% if(usuario.nivel < 3) {%>
+					<b><p style="text-align: center;" id="texto">Aprovar</p></b>
+					<form method="POST" action="">
+						<div class="input-field col s12">
+							<label for="motivo_recusar" class="">Motivo para Recusar</label>
+							<textarea id='motivo_recusar_textarea' name="motivo_recusar" class="materialize-textarea"></textarea>
+						</div>
+						<div class="row">					
+		        	<input id="id_pagamento" type="hidden" name="id_pagamento">
+		        	<div class="col s12 m4">
+								<a style="width: 100%; text-align: center;" class="modal-action modal-close waves-effect btn-flat grey lighten-2">Cancelar</a>
+							</div>
+
+								<div class="col s12 m4">
+									<button style="width: 100%; text-align: center;" class="modal-action modal-close waves-effect waves-green btn-flat red lighten-2 white-text ajax-submit"
+													data-href="/sistema/pagamentos/recusar/"
+														data-action=""
+															>Recusar</button>
+								</div>
+
+				        <div class="col s12 m4">
+									<button style="width: 100%; text-align: center;" class="modal-action modal-close waves-effect waves-green btn-flat green lighten-2 white-text ajax-submit"
+													data-href="/sistema/pagamentos/aprovacao-pagamento/"
+														data-action=""
+															>Aprovar</button>
+								</div>
+						</div>
+					</form>
+				<%}else{%>
+					<div class="row">	
+						<div class="col s12 center">
+							<a style="width: 50%; text-align: center;" href="#!" class="modal-action modal-close waves-effect btn-flat blue lighten-2">Ok</a>
+						</div>
+				</div>
+				<%}%>
+
+				</div>

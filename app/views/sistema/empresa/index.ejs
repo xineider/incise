@@ -1,0 +1,44 @@
+
+    <div class="card-panel white">
+      <h4>Empresas</h4>
+      <a href="/sistema/empresas/cadastrar"  class="btn-floating btn-large waves-effect waves-light blue darken-3 right ajax-load tooltipped" data-position="left" data-delay="50" data-tooltip="Adicionar Empresa"><i class="fa fa-plus" aria-hidden="true"></i></a>
+      <table class="center-all">
+        <thead>
+          <tr>
+            <th>
+              Nome Fantasia
+            </th>
+            <th>
+              Ação
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <%
+          if (typeof data != 'undefined' && data.length > 0) {
+            for (var i = data.length - 1; i >= 0; i--) {
+          %>
+          <tr>
+             <td>
+              <%= data[i].nome_fantasia %>
+            </td>
+            <td>
+              <a class="btn-floating btn waves-effect waves-light green ajax-load" href="/sistema/empresas/editar/<%= data[i].id %>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+              <a class="btn-floating btn waves-effect waves-light red modal-remover-mount" data-href="#modaldeletar" data-id="<%= data[i].id %>" data-texto="Você tem certeza que quer deletar '<%= data[i].nome_fantasia %>'? " data-to="/sistema/empresas/desativar" data-back="/sistema/empresas"><i class="fa fa-minus" aria-hidden="true"></i></a>
+            </td>
+          </tr>
+          <%
+            }
+          } else {
+          %>
+          <tr>
+            <td colspan="5" class="center-align">
+              Não existem empresas cadastradas
+            </td>
+          </tr>
+          <%
+            }
+          %>
+        </tbody>
+      </table>
+    </div>

@@ -1,0 +1,58 @@
+
+  	<div class="card-panel white">
+      <br>
+  		<h4>Cadastrar Pagamento</h4>
+      <form method="POST" action="" enctype="multipart/form-data">
+        <div class="right-align">
+          <a href="/sistema/pagamentos/" class="btn-floating btn-large waves-effect waves-light blue darken-1 left ajax-load"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+          <button data-href="/sistema/pagamentos/cadastrar/" data-action="/sistema/pagamentos/" class="btn-floating btn-large waves-effect waves-light green darken-1 ajax-submit">
+            <i class="fa fa-floppy-o" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="row">
+          <h5>Informações</h5>
+
+          <div class="col s12 m6 l4">
+            <label>Empresa</label>
+            <select required="true" class="browser-default empresa-banco" name="id_empresa">
+              <option value="" disabled selected>Selecione</option>
+              <%
+              if (typeof data.empresas != 'undefined' && data.empresas.length > 0) {
+                for (var i = data.empresas.length - 1; i >= 0; i--) {
+              %>
+              <option value="<%= data.empresas[i].id %>"><%= data.empresas[i].nome_fantasia %></option>
+              <%
+                }
+              }
+              %>
+            </select>
+          </div>
+
+          <div class="input-field col s12 l8">
+            <label for="descricao">Descrição</label>
+            <textarea required="true" name="descricao" class="materialize-textarea"></textarea>
+          </div>
+
+          <div class="input-field col s12 l2">
+            <input required="true" class="validate valor" type="text" name="valor">
+            <label for="valor">Valor</label>
+          </div>
+
+          <div class="file-field col s12 m2 input-field">
+            <div class="btn waves-effect blue darken-2">
+              <span>Anexo</span>
+              <input class="anexo-input" type="file" name="anexo" data-href="/sistema/pagamentos/uploadpagamento/" accept=".doc,.docx,.pdf" >
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" required="true" type="text" placeholder="" readonly="true" hidden>
+            </div>
+          </div>
+
+
+        <div class="right-align">
+          <button data-href="/sistema/pagamentos/cadastrar/" data-action="/sistema/pagamentos/" class="btn waves-effect waves-light green darken-1 ajax-submit">
+            Salvar <i class="fa fa-floppy-o" aria-hidden="true"></i>
+          </button>
+        </div>
+      </form>
+  	</div>

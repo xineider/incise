@@ -1,0 +1,56 @@
+
+  	<div class="card-panel white">
+      <br>
+  		<h4>Cadastrar Usuario</h4>
+      <form method="POST" action="" enctype="multipart/form-data">
+        <div class="right-align">
+          <a href="/sistema/usuarios/" class="btn-floating btn-large waves-effect waves-light blue darken-1 left ajax-load"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+          <button data-href="/sistema/usuarios/cadastrar/" data-action="/sistema/usuarios/" class="btn-floating btn-large waves-effect waves-light green darken-1 ajax-submit">
+            <i class="fa fa-floppy-o" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="row">
+          <h5>Informações</h5>
+
+          <div class="col s12 m6 l3">
+            <label>Empresa</label>
+            <select required="true" class="browser-default empresa-banco" name="id_empresa">
+              <option value="" disabled selected>Selecione</option>
+              <option>Incise</option>
+              <%
+              if (typeof data.empresas != 'undefined' && data.empresas.length > 0) {
+                for (var i = data.empresas.length - 1; i >= 0; i--) {
+              %>
+              <option value="<%= data.empresas[i].id %>"><%= data.empresas[i].nome_fantasia %></option>
+              <%
+                }
+              }
+              %>
+            </select>
+          </div>
+
+          <input hidden name="hash_login" value="0">
+
+          <div class="input-field col s12 l3">
+            <input required="true" class="validate" type="text" name="login">
+            <label for="login">Nome de Login</label>
+          </div>
+
+          <div class="input-field col s12 l3">
+            <input required="true" class="validate" type="password" name="senha" maxlength="11">
+            <label for="valor">Senha</label>
+          </div>
+
+           <div class="input-field col s12 l3">
+            <input required="true" class="validate" type="text" name="email">
+            <label for="valor">E-mail</label>
+          </div>
+
+
+        <div class="right-align">
+          <button data-href="/sistema/usuarios/cadastrar/" data-action="/sistema/usuarios/" class="btn waves-effect waves-light green darken-1 ajax-submit">
+            Salvar <i class="fa fa-floppy-o" aria-hidden="true"></i>
+          </button>
+        </div>
+      </form>
+  	</div>

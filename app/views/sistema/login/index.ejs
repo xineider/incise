@@ -1,0 +1,43 @@
+		<div class="login">
+			<form method="POST" action="/login" class="submit-login">
+				<div class="box">
+					<%
+					if (typeof erro != 'undefined') {
+					%>
+	        		<div class="card-panel red darken-1 center-align" style="margin-bottom: 25px;">
+	        			<span class="white-text">Usuário ou senha incorreto(s), tente novamente.</span>
+	        		</div>
+					<%
+					}
+					%>
+
+					<%
+						if(typeof sucesso != 'undefined'){
+					%>
+						<div class="card-panel green darken-2 center-align" style="margin-bottom:25px;">
+							<span>Senha alterada com sucesso!</span>
+						</div>
+					<%
+					}
+					%>
+					
+					<div class="input-field">
+						<i class="fa fa-user prefix" aria-hidden="true"></i>
+						<input type="text" name="login" id="login" class="validate" autocomplete="off">
+						<label for="login">Usuário</label>
+					</div>
+					<div class="input-field">
+						<i class="fa fa-key prefix" aria-hidden="true"></i>
+						<input type="password" name="senha" id="senha" class="validate" autocomplete="off">
+						<label for="senha">Senha</label>
+					</div>
+					
+					<small><a href="/esqueceu-senha">Esqueceu sua senha?</a></small>
+					<div class="center-align">
+						<button class="btn-large blue darken-2 waves-effect waves-teal waves-light">
+							Acessar
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>

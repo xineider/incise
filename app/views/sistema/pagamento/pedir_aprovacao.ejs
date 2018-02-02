@@ -1,0 +1,25 @@
+			<b><p style="text-align: center;" id="texto">Por-favor anexe o Comprovante</p></b>
+			<div class="modal-footer">
+				<form method="POST" action="">
+					<div class="row">
+						<div class="file-field col s12 input-field">
+			      		<div class="btn waves-effect blue darken-2">
+			        	<span>Comprovante</span>
+			        	<input class="anexo-input" type="file" name="anexo" data-href="/sistema/pagamentos/uploadcomprovante/" accept="image/*,.doc,.docx,.pdf" >
+			      	</div>
+			    	</div>
+					</div>
+					<div class="row">
+						<input type="hidden" name="id" value="<%= data[0].id %>">
+						<input type="hidden" name="empresa" value="<%= data[0].empresa %>">
+						<input type="hidden" name="id_empresa" value="<%= data[0].id_empresa %>">
+
+	        	<div class="col s12 m6">
+							<a style="width: 100%; text-align: center;" class="modal-action modal-close waves-effect btn-flat grey lighten-2">Cancelar</a>
+						</div>
+		        <div class="col s12 m6">
+							<button style="width: 100%; text-align: center;" data-href="/sistema/pagamentos/pedir-aprovacao-pagamento/" data-action="/sistema/pagamentos/" class="modal-action modal-close waves-effect waves-green btn-flat green lighten-2 white-text ajax-submit">Pedir Aprovação</button>
+						</div>
+					</div>
+				</form>
+				</div>

@@ -1,0 +1,91 @@
+
+    <div class="card-panel white">
+      <h4>Pagamentos</h4>
+      <% if(usuario.nivel < 3) {%>
+        <a href="/sistema/pagamentos/cadastrar"  class="btn-floating btn-large waves-effect waves-light blue darken-3 right ajax-load tooltipped" data-position="left" data-delay="50" data-tooltip="Adicionar Pagamento"><i class="fa fa-plus" aria-hidden="true"></i></a>
+      <%}%>
+      <table class="centered responsive-table">
+        <thead>
+          <tr>
+            <th>
+              Empresa
+            </th>
+            <th>
+              Descrição
+            </th>
+            <th>
+              Valor
+            </th>
+            <th>
+              Anexos
+            </th>
+            <th>
+              Status
+            </th>
+            <th>
+              Ação
+            </th>
+            <th>
+              Aprovação
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <%
+          if (typeof data != 'undefined' && data.length > 0) {
+            for (var i = data.length - 1; i >= 0; i--) {
+          %>
+          <tr class="<%= data[i].status == 3 ? 'white' : (data[i].status == 1 ? 'green lighten-3' : (data[i].status == 2 ? 'amber lighten-3' : 'red lighten-3')) %>">
+            <td>
+              <%= data[i].empresa %>
+            </td>
+            <td>
+              <%= data[i].descricao %>
+            </td>
+             <td>
+              R$<%= data[i].valor.toFixed(2).replace('.', ',') %>
+            </td>
+            <td>
+              <a class="btn-floating btn waves-effect waves-light blue tooltipped" data-position="top" data-tooltip='Baixar' download href='/assets/files/pagamentos/<%= data[i].arquivo %>'><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+            </td>
+            <td>            
+              <%= data[i].status == 1 ? 'Pago' : (data[i].status == 2 ? 'Em análise' : (data[i].status == 3 ? 'A pagar' : 'Recusado')) %>
+            </td>
+            <td>
+
+              <% if(data[i].status == 3 || data[i].status == 4) { %>
+                <a class="btn-floating btn waves-effect waves-light blue darken-3 modal-mount tooltipped" data-position="top" data-tooltip="Pedir Aprovação Pagamento" data-link="/pagamentos/pedir-aprovacao-pagamento/<%= data[i].id%>" data-href="#modalinfooverflow"><i class="fa fa-check" aria-hidden="true"></i></a>
+              <%}%>
+           
+              <% if(usuario.nivel < 3) {%>
+                <a class="btn-floating btn waves-effect waves-light green ajax-load tooltipped" data-position="top" data-tooltip="Editar" href="/sistema/pagamentos/editar/<%= data[i].id %>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                <a class="btn-floating btn waves-effect waves-light red modal-remover-mount tooltipped" data-position="top" data-tooltip="Remover" data-href="#modaldeletar" data-id='<%= data[i].id %>' data-texto='Você tem certeza que quer deletar '<%= data[i].nome_fantasia %>'? '' data-to="/sistema/pagamentos/desativar" data-back="/sistema/pagamentos"><i class="fa fa-minus" aria-hidden="true"></i></a>
+              <%}%>
+            </td>
+
+
+<!--        <td>
+              <a class="btn-floating btn waves-effect waves-light blue darken-4 modal-mount tooltipped" data-position="top" data-tooltip="Aprovação Pagamento" data-link='/pagamentos/aprovacao-pagamento/<%= data[i].id%>' data-href="#modalinfooverflow"><i class="fa fa-file-text-o" aria-hidden="true"></i></a>
+            </td> -->
+
+            <td>
+              <a class="btn-floating btn waves-effect waves-light blue darken-4 modal-aprovacao-pagamento-comp-mount tooltipped" data-position="top" data-tooltip="Aprovação Pagamento" data-href='#modalaprovacaopagamentocomp' data-id-pagamento='<%= data[i].id %>' data-texto='Deseja aprovar o Pagamento?'data-back='/sistema/pagamentos' ><i class="fa fa-file-text-o" aria-hidden="true"></i></a>
+            </td>
+
+
+          </tr>
+          <%
+            }
+          } else {
+          %>
+          <tr>
+            <td colspan="5" class="center-align">
+              Não existem pagamentos cadastradas
+            </td>
+          </tr>
+          <%
+            }
+          %>
+        </tbody>
+      </table>
+    </div>

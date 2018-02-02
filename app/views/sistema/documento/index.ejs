@@ -1,0 +1,49 @@
+<div class="card-panel white">
+  <div class="header row">
+    <h4>Documentos</h4>
+    <% if(usuario.nivel < 3) {%>
+      <div class="right-align">
+        <a class="btn-floating btn-large waves-effect waves-light blue darken-2 right modal-mount" data-link="/documentos/adicionar" data-href="#modalinfo"><i class="fa fa-plus" aria-hidden="true"></i></a>
+      </div>
+    <%}%>
+  </div>
+  <ul class="collapsible" id="documento" data-collapsible="expandable">
+    <%
+    if (typeof data != 'undefined' && data.length > 0) {
+      for (var i = data.length - 1; i >= 0; i--) {
+    %>
+    <li>
+      <div class="collapsible-header relative folder" data-ajax="1" data-id="<%= data[i].id %>">
+        <i class="fa fa-folder" aria-hidden="true"></i><%= data[i].arquivo %><i class="fa fa-caret-down ar" aria-hidden="true"></i>
+      </div>
+      <div class="collapsible-body">
+        <ul class="collapsible" data-collapsible="expandable">
+          Não existem arquivos nesta pasta
+        </ul>
+      </div>
+    </li>
+    <%
+      }
+    }
+    %>
+  </ul>
+</div>
+<style type="text/css">
+  .collapsible-body {
+    padding: 0 0 0 25px;
+  }
+  .collapsible {
+    margin: 0;
+  }
+    .collapsible .collapsible {
+          box-shadow: 0px 0 black;
+          border-width: 0;
+          margin-bottom: -1px;
+    }
+  .collapsible .collapsible-header {
+    transition: 0.5s;
+  }
+  .collapsible .collapsible-header:hover {
+    background-color: #f9f9f9;
+  }
+</style>

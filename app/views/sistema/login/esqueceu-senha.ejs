@@ -1,0 +1,30 @@
+		<div class="login">
+			<form method="POST" action="/esqueceu-senha/esqueceu" class="submit-login">
+				<div class="box">
+					<%
+					if (typeof erro != 'undefined') {
+					%>
+	        		<div class="card-panel red darken-1 center-align" style="margin-bottom: 25px;">
+	        			<span class="white-text">Email não existente, tente novamente.</span>
+	        		</div>
+					<%
+					}
+					%>
+					
+					<span style="font-size:14pt">Por-favor informar seu e-mail</span>
+
+					<div class="input-field">
+						<i class="fa fa-envelope prefix" aria-hidden="true"></i>
+						<input required="true" type="text" name="email" id="email" class="validate" autocomplete="off">
+						<label for="email">Email</label>
+					</div>
+					
+					<a href="/login">Voltar</a>
+					<div class="center-align">
+						<button class="btn-large blue darken-2 waves-effect waves-teal waves-light">
+							Enviar
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
