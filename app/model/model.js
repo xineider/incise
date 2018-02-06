@@ -2,12 +2,14 @@
 var crypto = require('crypto');
 
 // FAZER LEITURA DAS CONFIGURAÇÕES
-var config = {"mysql": {
-								    "host"     : "us-cdbr-iron-east-05.cleardb.net",
-								    "user"     : "bc9f7435f43c91",
-								    "password" : "d6c51f9d",
-								    "database" : "heroku_9d1276cf5a6af09"
-							  	}};
+
+
+var config = {
+						    "host"     : "us-cdbr-iron-east-05.cleardb.net",
+						    "user"     : "bc9f7435f43c91",
+						    "password" : "d6c51f9d",
+						    "database" : "heroku_9d1276cf5a6af09"
+							};
 
 // CONEXÃO MYSQL
 var mysql      = require('mysql');
