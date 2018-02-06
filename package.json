@@ -1,9 +1,9 @@
 {
-  "name": "heroku_9d1276cf5a6af09",
+  "name": "incise",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www & npm start",
+    "start": "node ./bin/www & npm start" ,
     "test": "set DEBUG=myapp:* & npm start"
   },
   "dependencies": {
