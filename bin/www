@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('incise:server');
+var debug = require('debug')('sistemasdg:server');
 var http = require('http');
 
 /**
