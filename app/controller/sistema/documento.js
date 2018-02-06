@@ -23,10 +23,6 @@ router.use(function (req, res, next) {
 
 router.get('/', function(req, res, next) {
 		model.GetPastas(req.session.usuario.id_empresa,req.session.usuario.nivel).then(data => {
-			console.log('---------- GET PASTAS -----------------');
-			console.log(data);
-			console.log('---------------------------------------');
-
 			res.render(req.isAjaxRequest() == true ? 'api' : 'montadorSistema', {html: 'sistema/documento/index', data: data, usuario: req.session.usuario});
 		});
 });
