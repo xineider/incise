@@ -31,7 +31,6 @@ router.post('/alterar', function(req, res, next) {
 		console.log('*****************************************');
 		delete POST.senha_atual;
 		if (data_usuario.length > 0){
-			console.log('ESTOU ENTRANDO AQUIIIIIII');
 			model.UpdateUsuario('usuarios', POST).then(data => {
 				control.SendMail(data_usuario[0].email,'Sua senha foi Atualizada em Incise',
 		 		'Olá sua senha foi alterada com sucesso em Incise.',

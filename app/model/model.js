@@ -4,9 +4,9 @@ var crypto = require('crypto');
 // FAZER LEITURA DAS CONFIGURAÇÕES
 // var config = {
 // 						    "host"     : "localhost",
-// 						    "user"     : "optimaco_optima",
-// 						    "password" : "optimaco_optima123@",
-// 						    "database" : "optimaco_optima"
+// 						    "user"     : "root",
+// 						    "password" : "root",
+// 						    "database" : "incise"
 // 					  	};
 var config = {
 						    "host"     : "us-cdbr-iron-east-05.cleardb.net",

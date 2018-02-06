@@ -23,9 +23,6 @@ router.post('/', function(req, res, next) {
 	// Recebendo o valor do post
 	POST = req.body;
 	POST.senha = control.Encrypt(POST.senha);
-	console.log('___________Dados dos Post de Entrar no Sistema___________');
-	console.log(POST);
-	console.log('_________________________________________________________');
 
 	model.Login(POST).then(data => {
 	  if (data.length > 0) {

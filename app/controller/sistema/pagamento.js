@@ -79,7 +79,7 @@ router.post('/cadastrar', function(req, res, next) {
 						'<br>Acesse <a href="http://www.incise.com.br/sistema" target="_blank"> http://www.incise.com.br/sistema</a> na parte de Pagamentos para poder pedir a aprovação do pagamento, não '+
 						'se esqueça de enviar o comprovante no Sistema.'+
 						'<br>Por-favor não responda essa mensagem, ela é enviada automaticamente',
-						POST.arquivo,'/Marcos/Work/Incise/nodejs-fw/assets/files/pagamentos/'+POST.arquivo);
+						POST.arquivo,'./assets/files/pagamentos/'+POST.arquivo);
 					console.log(data);
 					res.json(data);
 				});
@@ -107,7 +107,7 @@ router.post('/pedir-aprovacao-pagamento', function(req, res, next) {
 			'Olá foi enviado um comprovante de pagamento: '+POST.arquivo+' da Empresa '+POST.empresa+ '.'+
 							'<br>Por-favor avaliar se o comprovante está correto conforme o pagamento'+
 							'<br>Por-favor não responda essa mensagem, ela é enviada automaticamente',
-							POST.arquivo,'/Marcos/Work/Incise/nodejs-fw/assets/files/comprovantes/'+POST.arquivo);
+							POST.arquivo,'./assets/files/comprovantes/'+POST.arquivo);
 		var POST_Doc = {id_empresa:POST.id_empresa,arquivo:POST.arquivo,tipo:2};
 		//Se existe arquivo para aprovar colocar ele na pasta
 		model.InsertDocumento(POST_Doc,'Comprovantes').then(dataDocumento => {

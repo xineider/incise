@@ -94,8 +94,8 @@ SendMail(para, assunto,text, html) {
 							port: 587,
 							secure: false, // true for 465, false for other ports
 							auth: {
-									user: 'gjyvbu65akko7g6s@ethereal.email', // generated ethereal user
-									pass: 'RxFJpSTT2hSup9yvQg'  // generated ethereal password
+									user: 'gfqyallnqz3fsbxn@ethereal.email', // generated ethereal user
+									pass: 'esskawKSjJQaVXSXnJ'  // generated ethereal password
 							},
 	    				tls: {
 	    					rejectUnauthorized: false
@@ -104,7 +104,7 @@ SendMail(para, assunto,text, html) {
 
 					// setup email data with unicode symbols
 					let mailOptions = {
-							from: 'gjyvbu65akko7g6s@ethereal.email', // sender address
+							from: 'gfqyallnqz3fsbxn@ethereal.email', // sender address
 							to: para, // list of receivers
 							subject: assunto, // Subject line
 							text: text, 
@@ -133,8 +133,8 @@ SendMailAttachment(para, assunto,text, html,nomeAnexo,caminhoAnexo) {
 							port: 587,
 							secure: false, // true for 465, false for other ports
 							auth: {
-									user: 'gjyvbu65akko7g6s@ethereal.email', // generated ethereal user
-									pass: 'RxFJpSTT2hSup9yvQg'  // generated ethereal password
+									user: 'gfqyallnqz3fsbxn@ethereal.email', // generated ethereal user
+									pass: 'esskawKSjJQaVXSXnJ'  // generated ethereal password
 							},
 	    				tls: {
 	    					rejectUnauthorized: false
@@ -143,7 +143,7 @@ SendMailAttachment(para, assunto,text, html,nomeAnexo,caminhoAnexo) {
 
 					// setup email data with unicode symbols
 					let mailOptions = {
-							from: 'gjyvbu65akko7g6s@ethereal.email', // sender address
+							from: 'gfqyallnqz3fsbxn@ethereal.email', // sender address
 							to: para, // list of receivers
 							subject: assunto, // Subject line
 							text: text, 
