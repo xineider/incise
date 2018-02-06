@@ -4,16 +4,6 @@ var app = express();
 var Helper = require('./model.js');
 var helper = new Helper;
 
-// FAZER LEITURA DAS CONFIGURAÇÕES
-var config = helper.Config();
-
-// CONEXÃO MYSQL
-var mysql      = require('mysql');
-var connection = mysql.createConnection(config['mysql']);
-connection.connect();
-var query = '';
-var array = [];
-
 class PagamentosModel {
 	Pagamentos(id_empresa) {
 		var ad_query = typeof id_empresa != 'undefined' & id_empresa != 0 ? ' AND a.id_empresa = ?' : '';
