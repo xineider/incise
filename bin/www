@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('sistemasdg:server');
+var debug = require('debug')('heroku_9d1276cf5a6af09:server');
 var http = require('http');
 
 /**
