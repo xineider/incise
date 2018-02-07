@@ -45,7 +45,7 @@ router.post('/site/enviarebook', function(req, res, next) {
 	control.SendMailAttachment(POST.email,'Ebook Incise','Obrigado por receber nosso Ebook',
 		'Obrigado por receber nosso Ebook!' /
 							'<br>Por-favor não responda essa mensagem, ela é enviada automaticamente',
-							'Ebook Incise.pdf','/Marcos/Work/Incise/nodejs-fw/assets/files/Ebook Incise.pdf');
+							'Ebook Incise.pdf','./assets/files/Ebook Incise.pdf');
 		res.json(data);
 });
 
@@ -69,7 +69,7 @@ router.post('/site/enviarcurriculo', function(req, res, next) {
 							'<br><b>Função</b>:' + POST.funcao +
 							'<br><b>Mensagem</b>:<br>'+ POST.descricao +
 							'<br>Não responda esta mensagem, ela é enviada automaticamente!',
-							POST.arquivo,'/Marcos/Work/Incise/nodejs-fw/assets/files/curriculos/'+POST.arquivo);
+							POST.arquivo,'./assets/files/documentos/'+POST.arquivo);
 	}
 	else
 	{
@@ -87,12 +87,10 @@ router.post('/site/enviarcurriculo', function(req, res, next) {
 	res.json(data);
 });
 
-
-
 router.post('/site/uploadarquivo', function(req, res, next) {
   var sampleFile = req.files.arquivo;
-  var nome = control.DateTimeForFile()+'_'+sampleFile.name;
-  sampleFile.mv('/Marcos/Work/Incise/nodejs-fw/assets/files/curriculos/' + nome,function(err){
+  var nome = 'curriculo_'+ control.DateTimeForFile()+'_'+sampleFile.name;
+  sampleFile.mv('./assets/files/documentos/' + nome,function(err){
   	if(err)
     	return res.status(500).send(err);
    	res.json(nome);

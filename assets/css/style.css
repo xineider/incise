@@ -917,3 +917,26 @@ header nav{
     width: 100%;
     padding-right: 100px;
   }
+
+  /* Classe do Arquivo quando fizer upload para que ele caiba no card */
+  .remover_pai {
+    word-break: break-word;
+  }
+
+
+  .comprovante-nome{
+    word-wrap: break-word;
+    width: 100%;
+    padding-right: 40px;
+  }
+
+  .comprovante-nome-full{
+    word-wrap: break-word;
+    width: 100%;
+  }
+
+  .comprovante-download{
+    top: 0;
+    height: 100%;
+    margin-right: 10px;
+  }

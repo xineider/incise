@@ -46,7 +46,7 @@
               R$<%= data[i].valor.toFixed(2).replace('.', ',') %>
             </td>
             <td>
-              <a class="btn-floating btn waves-effect waves-light blue tooltipped" data-position="top" data-tooltip='Baixar' download href='/assets/files/pagamentos/<%= data[i].arquivo %>'><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
+              <a class="btn-floating btn waves-effect waves-light blue tooltipped" data-position="top" data-tooltip='Baixar' download href='/assets/files/documentos/<%= data[i].arquivo %>'><i class="fa fa-arrow-down" aria-hidden="true"></i></a>
             </td>
             <td>            
               <%= data[i].status == 1 ? 'Pago' : (data[i].status == 2 ? 'Em análise' : (data[i].status == 3 ? 'A pagar' : 'Recusado')) %>

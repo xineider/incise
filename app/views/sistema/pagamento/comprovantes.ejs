@@ -1,34 +1,30 @@
 <h5>Comprovantes</h5>
-<div class="card-panel grey lighten-4">
-	<table>
-		<tbody>
-		<%
-  		if (typeof data != 'undefined' && data.length > 0) {
-  			if(data[0].arquivo != null){
-  	%>
-					<tr>
-						<td><%= data[0].arquivo%></td>
-						<td><a class="btn-floating btn waves-effect waves-light blue tooltipped" data-position="top" data-tooltip='Baixar' download href='/assets/files/comprovantes/<%= data[0].arquivo %>'><i class="fa fa-download" aria-hidden="true"></i></a></td>
-					</tr>
-				<%
-				} else {
-		  	%>
-			  	<tr>
-			  		<td colspan="5" class="center-align">
-			    		Cliente não enviou comprovante
-			    	</td>
-			 		</tr>
-			  	<%
-			  	}}
-				%>
-		</tbody>
-	</table>
+<div class="card-panel grey lighten-4 relative">
+	<%
+	if (typeof data != 'undefined' && data.length > 0) {
+		if(data[0].arquivo != null){
+			%>
+			<div class="comprovante-nome">
+				<%= data[0].arquivo%>
+			</div>
+			<div class="ar comprovante-download valign-wrapper">
+				<a class="btn-floating btn waves-effect waves-light blue tooltipped" data-position="top" data-tooltip='Baixar' download href='/assets/files/documentos/<%= data[0].arquivo %>'><i class="fa fa-download" aria-hidden="true"></i></a>
+			</div>
+			<%
+		} else {
+			%>
+			<div class="comprovante-nome-full">Cliente não enviou comprovante</div>
+			<%
+		}}
+		%>
+	</tbody>
+</table>
 </div>
 
 <% if (typeof data != 'undefined' && data.length > 0) {
 	if(data[0].motivo_recusar != null){ %>
-		<h5>Motivo da recusão:</h5>
-		<div class="card-panel">
-			<%= data[0].motivo_recusar %>
-		</div>
-<% }} %>
+	<h5>Motivo da recusão:</h5>
+	<div class="card-panel">
+		<%= data[0].motivo_recusar %>
+	</div>
+	<% }} %>

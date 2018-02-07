@@ -70,10 +70,9 @@ router.post('/cadastrar/pasta', function(req, res, next) {
 });
 router.post('/uploadarquivo', function(req, res, next) {
   var sampleFile = req.files.arquivo;
-  var nome = control.DateTimeForFile()+'_'+sampleFile.name;
+  var nome = 'documento_'+control.DateTimeForFile()+'_'+sampleFile.name;
 
   // Use the mv() method to place the file somewhere on your server
-  // sampleFile.mv('./assets/files/documentos/'+nome, function(err) {
  	sampleFile.mv('./assets/files/documentos/' + nome,function(err){
     if (err) {
       return res.status(500).send(err);
