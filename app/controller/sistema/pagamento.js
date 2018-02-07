@@ -80,7 +80,6 @@ router.post('/cadastrar', function(req, res, next) {
 						'se esqueça de enviar o comprovante no Sistema.'+
 						'<br>Por-favor não responda essa mensagem, ela é enviada automaticamente',
 						POST.arquivo,'./assets/files/pagamentos/'+POST.arquivo);
-					console.log(data);
 					res.json(data);
 				});
 			});
