@@ -11,6 +11,7 @@ class UsuariosModel {
 										(SELECT b.nome_fantasia FROM empresas as b WHERE b.id = a.id_empresa) as empresa \
 											FROM usuarios as a WHERE a.deletado = ? AND a.nivel>1 ORDER BY a.id',[0]).then(data => {
 				resolve(data);
+				console.log(data);
 			});
 		});
 	}

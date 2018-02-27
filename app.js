@@ -25,7 +25,8 @@ var usuarioSis = require('./app/controller/sistema/usuario');
 var documentosSis = require('./app/controller/sistema/documento');
 var alterarSenhaSis = require('./app/controller/sistema/alterar-senha');
 var esqueceuSenhaSis = require('./app/controller/sistema/esqueceu-senha');
-
+var categoria = require ('./app/controller/sistema/categoria');
+var post = require('./app/controller/sistema/post');
 
 var VerificacaoModel = require('./app/model/verificacaoModel');
 var verificacao = new VerificacaoModel;
@@ -106,7 +107,8 @@ app.use('/sistema/pagamentos',pagamentosSis);
 app.use('/sistema/documentos',documentosSis);
 app.use('/sistema/usuarios',usuarioSis);
 app.use('/sistema/alterar-senha',alterarSenhaSis);
-
+app.use('/categoria',categoria);
+app.use('/post',post);
 
 
 
