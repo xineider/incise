@@ -7,7 +7,7 @@ var helper = new Helper;
 class PostModel {
 	Post() {
 		return new Promise(function (resolve, reject) {
-			helper.Query('SELECT a.* FROM node_post as a WHERE a.deletado = ? ORDER BY a.id', [0]).then(data => {
+			helper.Query('SELECT a.id,a.titulo,a.escritor,DATE_FORMAT(a.data_post, "%d/%m/%Y") as data_post,a.link, DATE_FORMAT(a.data_post_alteracao, "%d/%m/%Y") as data_post_alteracao,a.status FROM node_post as a WHERE a.deletado = ? ORDER BY a.id', [0]).then(data => {
 				
 				console.log(data);
 				resolve(data);
