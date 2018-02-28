@@ -10,9 +10,28 @@
         <th>
           Titulo
         </th>
+        <!-- <th>
+          Conteúdo
+        </th> -->
         <th>
-          Ação
+          Escritor
         </th>
+        <th>
+          Data do Post
+        </th>
+        <!-- <th>
+          Ação
+        </th> -->
+        <th>
+          Data post alteração
+        </th>
+        <th>
+          Link
+        </th>
+        <th>
+          Status
+        </th>
+
       </tr>
     </thead>
     <tbody>
@@ -24,16 +43,42 @@
           <td>
             <%= data[i].titulo %>
           </td>
+
+          <!-- colocar o conteudo aqui -->
+
           <td>
-            <a class="btn-floating btn waves-effect waves-light green ajax-load" href="/post/editar/<%= data[i].id %>">
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-            </a>
-            <a class="btn-floating btn waves-effect waves-light red modal-remover-mount" data-href="#modaldeletar" data-id="<%= data[i].id %>"
-              data-texto="Você tem certeza que quer deletar '<%= data[i].nome_fantasia %>'? " data-to="/sistema/post/desativar"
-              data-back="/sistema/post">
-              <i class="fa fa-minus" aria-hidden="true"></i>
-            </a>
+            <%= data[i].escritor %>
           </td>
+          <td>
+            <%= data[i].data_post %>
+          </td>
+
+          <td>
+            <%= data[i].data_post_alteracao %>
+          </td>
+          <td>
+            <%= data[i].link %>
+          </td>
+          <td>
+
+              <% if (data[i].status == 0){ %>
+                Publicado
+                <% } else { %>
+                  Rascunho 
+                  <% } %>
+          </td>
+
+
+          <!-- <td>
+            <a class="btn-floating btn waves-effect waves-light green ajax-load" href="/post/editar/<%= data[i].id %>">
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                  </a>
+                  <a class="btn-floating btn waves-effect waves-light red modal-remover-mount" data-href="#modaldeletar" data-id="<%= data[i].id %>"
+                    data-texto="Você tem certeza que quer deletar '<%= data[i].nome_fantasia %>'? " data-to="/sistema/post/desativar"
+                    data-back="/sistema/post">
+                    <i class="fa fa-minus" aria-hidden="true"></i>
+                  </a>
+          </td> -->
         </tr>
         <%
                   }
@@ -41,7 +86,7 @@
                 %>
           <tr>
             <td colspan="5" class="center-align">
-              Não existem post cadastradas
+              Não existem post.
             </td>
           </tr>
           <%
