@@ -1,145 +1,150 @@
 // Eventos DOM
 $(document).on('ready', function () {
 	$('.modal').modal();
-	adicionarLoader();
-		loadScripts();
-		FormatInputs();
-		activeCarousel();
+	// QUILL
+	var quill = new Quill('#editor', {
+		theme: 'snow'
+	});
+// FIM QUILL
+adicionarLoader();
+loadScripts();
+FormatInputs();
+activeCarousel();
 
-		$(document).on('change','.anexo-input', function(){
-			$('.file-field').fadeOut();
-		});
+$(document).on('change','.anexo-input', function(){
+	$('.file-field').fadeOut();
+});
 
-		$(document).on('click','.remove-arquivo',function() {
-			$(this).parents('.remover_pai').remove();
-			$('.file-field').fadeIn();
-			$('.anexo-input').val('');
-		});
+$(document).on('click','.remove-arquivo',function() {
+	$(this).parents('.remover_pai').remove();
+	$('.file-field').fadeIn();
+	$('.anexo-input').val('');
+});
 
-		$('.menu-sistema-incise').height($('main').height());
-		
-		$(document).ajaxComplete(function () {
-			$('.collapsible').collapsible();
-			 loadScripts();
-			 FormatInputs();
-			 $('.menu-sistema-incise').height($('main').height());
-			 Materialize.updateTextFields();
-			 if($('#ajax-carousel').val()==0){
-				$('#ajax-carousel').val(1);
-			}else{
-				$('#ajax-carousel').val(0)
-			}
+$('.menu-sistema-incise').height($('main').height());
 
-		});
-		$(document).on('click', '.modal-remover-mount', function (e) {
-			e.preventDefault();
-			var modal = $(this).data('href');
-			var texto = $(this).data('texto');
-			var id = $(this).data('id');
-			var to = $(this).data('to');
-			var back = $(this).data('back');
-			$(modal).modal('open');
-			$(modal).find('#texto').text(texto);
-			$(modal).find('#id').val(id);
-			$(modal).find('button').data('href', to).data('action', back);
-		});
+$(document).ajaxComplete(function () {
+	$('.collapsible').collapsible();
+	loadScripts();
+	FormatInputs();
+	$('.menu-sistema-incise').height($('main').height());
+	Materialize.updateTextFields();
+	if($('#ajax-carousel').val()==0){
+		$('#ajax-carousel').val(1);
+	}else{
+		$('#ajax-carousel').val(0)
+	}
 
-		$(document).on('click', '.modal-pedir-aprovacao-pagamento-mount', function (e) {
-			e.preventDefault();
-			var modal = $(this).data('href');
-			var texto = $(this).data('texto');
-			var id_pagamento = $(this).data('id-pagamento');
-			var to = $(this).data('to');
-			var back = $(this).data('back');
+});
+$(document).on('click', '.modal-remover-mount', function (e) {
+	e.preventDefault();
+	var modal = $(this).data('href');
+	var texto = $(this).data('texto');
+	var id = $(this).data('id');
+	var to = $(this).data('to');
+	var back = $(this).data('back');
+	$(modal).modal('open');
+	$(modal).find('#texto').text(texto);
+	$(modal).find('#id').val(id);
+	$(modal).find('button').data('href', to).data('action', back);
+});
 
-			$(modal).modal('open');
-			$(modal).find();
+$(document).on('click', '.modal-pedir-aprovacao-pagamento-mount', function (e) {
+	e.preventDefault();
+	var modal = $(this).data('href');
+	var texto = $(this).data('texto');
+	var id_pagamento = $(this).data('id-pagamento');
+	var to = $(this).data('to');
+	var back = $(this).data('back');
 
-			/*Fazer botão de comprovante aparecer,limpar o input e remover a classe do anexo*/
-			$(modal).find('.file-field').fadeIn();
-			$(modal).find('.anexo-input').val('');
-			$(modal).find('.remover_pai').remove();
+	$(modal).modal('open');
+	$(modal).find();
 
-
-			$(modal).find('#texto').text(texto);
-			$(modal).find('#id_pagamento').val(id_pagamento);
-			$(modal).find('button').data('href', to).data('action', back);
-		});
-
-		$(document).on('click', '.modal-aprovacao-pagamento-comp-mount', function (e) {
-			e.preventDefault();
-
-			var modal = $(this).data('href');
-			var texto = $(this).data('texto');
-			var id_pagamento = $(this).data('id-pagamento');
-			var to = $(this).data('to');
-			var back = $(this).data('back');
-			/*Limpar textarea quando clicar para não ficar aparecendo depois de usar*/
-			$(modal).find('#motivo_recusar_textarea').val('');
-			$(modal).find('#texto').text(texto);
-			$(modal).find('#id_pagamento').val(id_pagamento);
-			$(modal).find('button').data('href', to).data('action', back);
-			LoadComprovantes(id_pagamento,modal);
-		});
+	/*Fazer botão de comprovante aparecer,limpar o input e remover a classe do anexo*/
+	$(modal).find('.file-field').fadeIn();
+	$(modal).find('.anexo-input').val('');
+	$(modal).find('.remover_pai').remove();
 
 
-		$(document).on('click', '.folder.active', function (e) {
-			e.preventDefault();
-			$(this).find('i:first-child:not(.fa-times)').toggleClass('fa-folder fa-folder-open');
-			$(this).find('i:last-child').toggleClass('fa-caret-down fa-caret-up');
-			if ($(this).data('ajax') == 1) {
-				LoadArquivos($(this).data('id'), $(this));
-			}
-		});
+	$(modal).find('#texto').text(texto);
+	$(modal).find('#id_pagamento').val(id_pagamento);
+	$(modal).find('button').data('href', to).data('action', back);
+});
 
-		$(document).on('click', '.folder:not(.active)', function (e) {
-			$(this).find('i:first-child:not(.fa-times)').toggleClass('fa-folder-open fa-folder');
-			$(this).find('i:last-child').toggleClass('fa-caret-up fa-caret-down');
-		});
+$(document).on('click', '.modal-aprovacao-pagamento-comp-mount', function (e) {
+	e.preventDefault();
 
-		$(document).on('click', '.modal-mount', function (e) {
-			e.preventDefault();     
-			var modal = $(this).data('href');
-			var link = $(this).data('link');
-			MountModal(modal, link);
-		});
-		$(document).on('change', 'input[type="file"]', function () {
-			console.log($(this));
-			if($(this).hasClass('documento_input_file')){
-				documentoUploadFile($(this));
-			}
-			else if($(this).val() != '') {
-				UploadFile($(this));
-			}
-		});
-		$(document).on('click', '.ajax-load', function(e) {
-			e.preventDefault();
-			var link = $(this).attr('href');
-			console.log(link);
-			GoTo(link, true);
-		});
-		$(document).on('click', '.ajax-submit', function(e) {
-			e.preventDefault();
-			var form = $(this).parents('form');
-			var post = form.serializeArray();
-			var link = $(this).data('href');
-			var back = $(this).data('action');
-			var metodo = $(this).data('method');
-			var method = (metodo != undefined && metodo != '') ? metodo : 'POST';
-			if (VerificarForm(form) == true) {
-				SubmitAjax(post, link, back, method);
-			}
-		});
+	var modal = $(this).data('href');
+	var texto = $(this).data('texto');
+	var id_pagamento = $(this).data('id-pagamento');
+	var to = $(this).data('to');
+	var back = $(this).data('back');
+	/*Limpar textarea quando clicar para não ficar aparecendo depois de usar*/
+	$(modal).find('#motivo_recusar_textarea').val('');
+	$(modal).find('#texto').text(texto);
+	$(modal).find('#id_pagamento').val(id_pagamento);
+	$(modal).find('button').data('href', to).data('action', back);
+	LoadComprovantes(id_pagamento,modal);
+});
 
 
-		$(document).on('change', 'select[name="id_doc_pai"]', function (e) {
-			if($(this).val() == 'Criar nova') {
-				e.preventDefault();
-				var modal = '#modalinfo2';
-				var link = '/documentos/adicionar/pasta';
-				MountModal(modal, link);
-			}
-		});
+$(document).on('click', '.folder.active', function (e) {
+	e.preventDefault();
+	$(this).find('i:first-child:not(.fa-times)').toggleClass('fa-folder fa-folder-open');
+	$(this).find('i:last-child').toggleClass('fa-caret-down fa-caret-up');
+	if ($(this).data('ajax') == 1) {
+		LoadArquivos($(this).data('id'), $(this));
+	}
+});
+
+$(document).on('click', '.folder:not(.active)', function (e) {
+	$(this).find('i:first-child:not(.fa-times)').toggleClass('fa-folder-open fa-folder');
+	$(this).find('i:last-child').toggleClass('fa-caret-up fa-caret-down');
+});
+
+$(document).on('click', '.modal-mount', function (e) {
+	e.preventDefault();     
+	var modal = $(this).data('href');
+	var link = $(this).data('link');
+	MountModal(modal, link);
+});
+$(document).on('change', 'input[type="file"]', function () {
+	console.log($(this));
+	if($(this).hasClass('documento_input_file')){
+		documentoUploadFile($(this));
+	}
+	else if($(this).val() != '') {
+		UploadFile($(this));
+	}
+});
+$(document).on('click', '.ajax-load', function(e) {
+	e.preventDefault();
+	var link = $(this).attr('href');
+	console.log(link);
+	GoTo(link, true);
+});
+$(document).on('click', '.ajax-submit', function(e) {
+	e.preventDefault();
+	var form = $(this).parents('form');
+	var post = form.serializeArray();
+	var link = $(this).data('href');
+	var back = $(this).data('action');
+	var metodo = $(this).data('method');
+	var method = (metodo != undefined && metodo != '') ? metodo : 'POST';
+	if (VerificarForm(form) == true) {
+		SubmitAjax(post, link, back, method);
+	}
+});
+
+
+$(document).on('change', 'select[name="id_doc_pai"]', function (e) {
+	if($(this).val() == 'Criar nova') {
+		e.preventDefault();
+		var modal = '#modalinfo2';
+		var link = '/documentos/adicionar/pasta';
+		MountModal(modal, link);
+	}
+});
 
 								// var form = $(this).parents('form')[0];
 								// var formData = new FormData(form);
@@ -352,43 +357,50 @@ function loadScripts (){
 		fullWidth: true,
 		indicators: true});
 
-		var primeiro = false;
-		
-		$(document).on('scroll', function (event) {         
-			if ($(window).scrollTop() >= 200 && $(window).scrollTop() <= 1130 && primeiro == false) {
-				primeiro = true;
-				$('#circulo1').circleProgress({
-					value: 0.75,
-					size: 180,
-					fill: '#006cbf'
-				});
-				$('.contador-titulo').removeClass('hide');
-				$('#circulo2').circleProgress({
-					value: 0.95,
-					size: 180,
-					fill: {
-						gradient: ["#23F731", "#00FFEE","#00D1C3"]
-					}
-				});
-				$('#circulo3').circleProgress({
-					value: 1,
-					size: 180,
-					fill: {
-						gradient: ["#F8FF29", "#FF7700"]
-					}
-				});
-			}
-		});
+	var primeiro = false;
+
+	$(document).on('scroll', function (event) {         
+		if ($(window).scrollTop() >= 200 && $(window).scrollTop() <= 1130 && primeiro == false) {
+			primeiro = true;
+			$('#circulo1').circleProgress({
+				value: 0.92,
+				size: 180,
+				fill: '#006cbf'
+			});
+			$('.contador-titulo').removeClass('hide');
+			$('#circulo2').circleProgress({
+				value: 0.90,
+				size: 180,
+				fill: {
+					gradient: ["#23F731", "#00FFEE","#00D1C3"]
+				}
+			});
+			$('#circulo3').circleProgress({
+				value: 0.85,
+				size: 180,
+				fill: {
+					gradient: ["#F8FF29", "#FF7700"]
+				}
+			});
+			$('#circulo4').circleProgress({
+				value: 1,
+				size: 180,
+				fill: {
+					gradient: ["#006400", "#228B22", "#00FF00"]
+				}
+			});
+		}
+	});
 	criarDepoimentos();
 }
 
 function activeCarousel(){
-		setTimeout(function() {
-			if(typeof $('#ajax-carousel').val() != 'undefined'){
-				$('.carousel').carousel('next');
-			}
-			activeCarousel();
-		},5000);
+	setTimeout(function() {
+		if(typeof $('#ajax-carousel').val() != 'undefined'){
+			$('.carousel').carousel('next');
+		}
+		activeCarousel();
+	},5000);
 }
 
 function SubmitAjax(post, link, back, method) {
@@ -667,7 +679,7 @@ function criarDepoimentos(){
 	};
 	if($('#testimonial-slider').length>0){
 		testimonial = new Testimonial('#testimonial-slider', optionsTesti);
-		testimonial.add(slidesDepoimento('Simone Breitenbach','','','A Incise é a contadoria mais rápida e confiável da região de Porto Alegre'));
+		testimonial.add(slidesDepoimento('Simone Breitenbach','<img src="/assets/imgs/simone.jpg" />','','A Incise é a contadoria mais rápida e confiável da região de Porto Alegre'));
 		testimonial.add(slidesDepoimento('Paulo Pazze','','','Meus problemas foram resolvidos pela Incise! Nota 10!'));
 		testimonial.add(slidesDepoimento('Mateus Barcellos','','','Equipe ágil e competente. Adorei!'));
 	}
@@ -724,7 +736,6 @@ function LoadArquivos(id, isso) {
 		}
 	});
 }
-
 
 
 

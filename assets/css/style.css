@@ -326,8 +326,8 @@ header nav{
     margin-top: -525px;
     right: 0;
     margin-right: 200px;
-    width: 250px;
-    height: 350px;
+    width: 450px;
+    height: 230px;
     background: rgba(0,108,191,0.8);
     padding:1rem;
     border-radius: 25px 0;
@@ -377,7 +377,7 @@ header nav{
   .contador-titulo{
     position: absolute;
     margin-top:-120px;
-    font-size: 38px;
+    font-size: 30px;
     font-weight: bold;
   }
 
@@ -387,13 +387,17 @@ header nav{
   }
 
   #circulo2 .contador-titulo{
-    margin-left:18px;
+    margin-left:58px;
     color:#3bc144;
   }
 
   #circulo3 .contador-titulo{
-    margin-left:50px;
+    margin-left:58px;
     color:#FF7700;
+  }
+   #circulo4 .contador-titulo{
+    margin-left:20px;
+    color:#006400;
   }
 
   .circulo-contador span{
@@ -940,4 +944,7 @@ header nav{
     height: 100%;
     margin-right: 10px;
   }
- 
+
+  #minebook{
+    height: 200px;
+        }
