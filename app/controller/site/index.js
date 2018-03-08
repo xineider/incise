@@ -67,6 +67,7 @@ router.post('/site/enviarcurriculo', function(req, res, next) {
 							'<br><b>Telefone</b>:' + POST.telefone +
 							'<br><b>Último Emprego</b>:' + POST.emprego +
 							'<br><b>Função</b>:' + POST.funcao +
+							'<br><b>Pretensão Salarial</b> R$' + POST.pretensao_salarial +
 							'<br><b>Mensagem</b>:<br>'+ POST.descricao +
 							'<br>Não responda esta mensagem, ela é enviada automaticamente!',
 							POST.arquivo,'./assets/files/documentos/'+POST.arquivo);
@@ -74,12 +75,13 @@ router.post('/site/enviarcurriculo', function(req, res, next) {
 	else
 	{
 		control.SendMail('markosss13@gmail.com','Contato - Vaga de emprego','Recebimento de contato para vaga de emprego pelo site Incise',
-		'Recebimento de vaga de emprego pelo site Incise. \
+		'Recebimento de vaga de emprego pelo site Incise. Não foi enviado Currículo. \
 							 <br><b>Nome</b>:' + POST.nome + 
 							'<br><b>Email</b>:' + POST.email +
 							'<br><b>Telefone</b>:' + POST.telefone +
 							'<br><b>Último Emprego</b>:' + POST.emprego +
 							'<br><b>Função</b>:' + POST.funcao +
+							'<br><b>Pretensão Salarial</b> R$' + POST.pretensao_salarial +
 							'<br><b>Mensagem</b>:<br>'+ POST.descricao +
 							'<br>Não responda esta mensagem, ela é enviada automaticamente!');
 	}

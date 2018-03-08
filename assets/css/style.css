@@ -424,7 +424,7 @@ header nav{
   }
 
   .testimonial_slider .author img{
-    display: none;
+   border:2px solid #80b7e8!important;
   }
 
 
@@ -463,12 +463,22 @@ header nav{
   }
 
   .contato .contato_dados, .contato .contato_form{
-    background:#d4d4d4;
+    background:#4da0ec;
     margin-top:5rem;
+    color: #fff;
   }
 
   .contato .contato_container{
     /*  opacity:0;*/
+  }
+
+  .contato .contato_container .btn{
+    text-transform: none;
+  }
+
+  .contato .contato_container a{
+    color:#fff;
+    text-shadow: 1px 2px 3px #075ead;
   }
 
   .contato .contato_dados{
@@ -477,7 +487,7 @@ header nav{
   }
 
   .contato .contato_dados i{
-    color: #105382;
+    color: #fff;
     font-size: 1.3rem;
     margin-right: 0.5rem;
   }
@@ -486,6 +496,14 @@ header nav{
     border-radius: 25px 0;
     padding-bottom:0.75rem;
     box-shadow:-1px 1px 5px #6d6d6d;
+  }
+
+  .contato_form input:not([type]), .contato_form input[type=text]:not(.browser-default), .contato_form input[type=password]:not(.browser-default), .contato_form input[type=email]:not(.browser-default),.contato_form input[type=url]:not(.browser-default),.contato_form input[type=time]:not(.browser-default),.contato_form input[type=date]:not(.browser-default),.contato_form input[type=datetime]:not(.browser-default),.contato_form input[type=datetime-local]:not(.browser-default),.contato_form input[type=tel]:not(.browser-default),.contato_form input[type=number]:not(.browser-default),.contato_form input[type=search]:not(.browser-default),.contato_form textarea.materialize-textarea{
+    border-bottom:1px solid #fff;
+  }
+
+  .contato_form .input-field label{
+    color:#fff;
   }
 
   input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):focus:not([readonly]), input[type=password]:not(.browser-default):focus:not([readonly]), input[type=email]:not(.browser-default):focus:not([readonly]), input[type=url]:not(.browser-default):focus:not([readonly]), input[type=time]:not(.browser-default):focus:not([readonly]), input[type=date]:not(.browser-default):focus:not([readonly]), input[type=datetime]:not(.browser-default):focus:not([readonly]), input[type=datetime-local]:not(.browser-default):focus:not([readonly]), input[type=tel]:not(.browser-default):focus:not([readonly]), input[type=number]:not(.browser-default):focus:not([readonly]), input[type=search]:not(.browser-default):focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]){
@@ -502,22 +520,23 @@ header nav{
   } 
 
 
-  .sistema{
+  .social-media{
     padding: 5rem 0rem;
   }
 
+  footer .mapa-empresa p{
+    color: #000;
+  }
 
-  .sistema .mapa-empresa{
-    max-width: 600px;
+
+  footer .mapa-empresa iframe{
+    max-width: 450px;
     width: 100%;
-    height:450px;
+    height:150px;
     border:0;
   }
 
 
-  .vagas-emprego{
-    margin-bottom:3rem;
-  }
 
   .vaga-emprego-titulo{
     color: white;

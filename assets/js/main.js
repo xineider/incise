@@ -2,10 +2,20 @@
 $(document).on('ready', function () {
 	$('.modal').modal();
 	// QUILL
-	var quill = new Quill('#editor', {
-		theme: 'snow'
-	});
+	if($('#editor').length>0){
+		var quill = new Quill('#editor', {
+			theme: 'snow'
+		});
+	}
+	if($('#tabela_filtrada').length>0){
+		$('#tabela_filtrada').DataTable({			
+			"paging":   false			
+		});
+	}
+
 // FIM QUILL
+
+
 adicionarLoader();
 loadScripts();
 FormatInputs();
@@ -34,6 +44,9 @@ $(document).ajaxComplete(function () {
 	}else{
 		$('#ajax-carousel').val(0)
 	}
+	$('#tabela_filtrada').DataTable({			
+		"paging":   false			
+	});
 
 });
 $(document).on('click', '.modal-remover-mount', function (e) {
@@ -460,7 +473,6 @@ function ActiveMaterializeInput(focus) {
 		}
 	});
 	$('main input:not(disabled):not(.not_me)').each(function () {
-		console.log('caindo aqui no not_me');
 		if ($(this).val() != '') {
 			$(this).focus();
 			$('main input:not([disabled]):not([type="hidden"]):not(.not_me)').first().focus();
@@ -679,9 +691,9 @@ function criarDepoimentos(){
 	};
 	if($('#testimonial-slider').length>0){
 		testimonial = new Testimonial('#testimonial-slider', optionsTesti);
-		testimonial.add(slidesDepoimento('Simone Breitenbach','<img src="/assets/imgs/simone.jpg" />','','A Incise é a contadoria mais rápida e confiável da região de Porto Alegre'));
-		testimonial.add(slidesDepoimento('Paulo Pazze','','','Meus problemas foram resolvidos pela Incise! Nota 10!'));
-		testimonial.add(slidesDepoimento('Mateus Barcellos','','','Equipe ágil e competente. Adorei!'));
+		testimonial.add(slidesDepoimento('Simone Breitenbach','/assets/imgs/depo_simone.jpg','','A Incise é a contadoria mais rápida e confiável da região de Porto Alegre'));
+		testimonial.add(slidesDepoimento('Paulo Pazze','/assets/imgs/depo_paulopazze.jpg','','Meus problemas foram resolvidos pela Incise! Nota 10!'));
+		testimonial.add(slidesDepoimento('Mateus Barcellos','/assets/imgs/depo_mateus.jpg','','Equipe ágil e competente. Adorei!'));
 	}
 }
 
