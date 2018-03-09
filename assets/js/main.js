@@ -44,9 +44,12 @@ $(document).ajaxComplete(function () {
 	}else{
 		$('#ajax-carousel').val(0)
 	}
-	$('#tabela_filtrada').DataTable({			
-		"paging":   false			
-	});
+
+	if($('#tabela_filtrada').length>0){	
+		$('#tabela_filtrada').DataTable({			
+			"paging":   false			
+		});
+	}
 
 });
 $(document).on('click', '.modal-remover-mount', function (e) {
