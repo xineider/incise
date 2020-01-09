@@ -4,53 +4,53 @@
       <h4>Editar Pagamento</h4>
       <form method="POST" action="" enctype="multipart/form-data">
         <%
-        if (typeof data != 'undefined' && data.length > 0) {
-          for (var i = data.length - 1; i >= 0; i--) {
+        if (typeof data.pagamento != 'undefined' && data.pagamento.length > 0) {
+          for (var i = data.pagamento.length - 1; i >= 0; i--) {
         %>
         <div class="right-align">
           <a href="/sistema/pagamentos/" class="btn-floating btn-large waves-effect waves-light blue darken-1 left ajax-load"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
-          <button data-href="/sistema/pagamentos/atualizar/<%= data[i].id %>" data-action="/sistema/pagamentos/" class="btn-floating btn-large waves-effect waves-light green darken-1 ajax-submit">
+          <button data-href="/sistema/pagamentos/atualizar/<%= data.pagamento[i].id %>" data-action="/sistema/pagamentos/" class="btn-floating btn-large waves-effect waves-light green darken-1 ajax-submit">
             <i class="fa fa-floppy-o" aria-hidden="true"></i>
           </button>
         </div>
         <div class="row">
           <h5>Informações</h5>
-          <input required="true" type="hidden" name="id" value="<%= data[i].id %>">
+          <input required="true" type="hidden" name="id" value="<%= data.pagamento[i].id %>">
 
-<!--         <div class="col s12 m6 l4">
+        <div class="col s12 m6 l4">
           <select required="true" class="browser-default" name="id_empresa">
-              <option value="" disabled selected>Selecione</option>
+             
               <%
               if (typeof data.empresas != 'undefined' && data.empresas.length > 0) {
                 for (var i2 = data.empresas.length - 1; i2 >= 0; i2--) {
               %>
-              <option value="<%= data.empresas[i2].id %>" <%= data[i].id_empresa == data.empresas[i2].id ? 'selected' : '' %>><%= data.empresas[i2].nome_fantasia %></option>
+              <option value="<%= data.empresas[i2].id %>" <%= data.pagamento[i].id_empresa == data.empresas[i2].id ? 'selected' : '' %>><%= data.empresas[i2].nome_fantasia %></option>
               <%
                 }
               }
               %>
             </select>
           </div> 
- -->
+
           <div class="input-field col s12 l8">
             <label for="descricao">Descrição</label>
-            <textarea required="true" name="descricao" class="materialize-textarea"><%= data[i].descricao %></textarea>
+            <textarea required="true" name="descricao" class="materialize-textarea"><%= data.pagamento[i].descricao %></textarea>
           </div>
 
           <div class="input-field col s12 l2">
-            <input required="true" class="validate" type="number" name="valor" maxlength="11" value="<%= data[i].valor %>">
+            <input required="true" class="validate" type="number" name="valor" maxlength="11" value="<%= data.pagamento[i].valor %>">
             <label for="valor">Valor</label>
           </div>
 
           <div class="file-field col s12 l10 input-field">
             <div class="btn waves-effect blue darken-2">
               <span>Anexo</span>
-              <input class="anexo-input" type="file" name="arquivo" value="<%= data[i].arquivo %>" data-href="/sistema/pagamentos/uploadpagamento/" accept=".doc,.docx,.pdf">
+              <input class="anexo-input" type="file" name="arquivo" value="<%= data.pagamento[i].arquivo %>" data-href="/sistema/pagamentos/uploadpagamento/" accept=".doc,.docx,.pdf">
             </div>
           </div>
 
         <div class="right-align">
-          <button data-href="/sistema/pagamentos/atualizar/<%= data[i].id %>" data-action="/sistema/pagamentos/" class="btn waves-effect waves-light green darken-1 ajax-submit">
+          <button data-href="/sistema/pagamentos/atualizar/<%= data.pagamento[i].id %>" data-action="/sistema/pagamentos/" class="btn waves-effect waves-light green darken-1 ajax-submit">
             Salvar <i class="fa fa-floppy-o" aria-hidden="true"></i>
           </button>
         </div>

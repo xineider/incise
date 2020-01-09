@@ -7,12 +7,6 @@ $(document).on('ready', function () {
 			theme: 'snow'
 		});
 	}
-	if($('#tabela_filtrada').length>0){
-		$('#tabela_filtrada').DataTable({			
-			"paging":   false			
-		});
-	}
-
 // FIM QUILL
 
 
@@ -43,12 +37,6 @@ $(document).ajaxComplete(function () {
 		$('#ajax-carousel').val(1);
 	}else{
 		$('#ajax-carousel').val(0)
-	}
-
-	if($('#tabela_filtrada').length>0){	
-		$('#tabela_filtrada').DataTable({			
-			"paging":   false			
-		});
 	}
 
 });
@@ -361,6 +349,7 @@ function adicionarLoader() {
 			});
 			$('.money').mask('000000000000000,00', {reverse: true});
 			$('.dropdown-button').dropdown();
+			validarDataTable($('#tabela_filtrada'));
 	//var options = { $AutoPlay: 1 };
 	// var jssor_slider1 = new $JssorSlider$('slider1_container', options);
 
@@ -749,6 +738,51 @@ function LoadArquivos(id, isso) {
 			setTimeout(function(){}, 10000);
 			removerLoader();
 		}
+	});
+}
+
+
+
+function validarDataTable(elemento){
+	if($(elemento).length>0){
+		/*Já existe a tabela então não há necessidade de criá-la(senão dá problema)*/
+		if($.fn.dataTable.isDataTable(elemento)){
+		}else{
+			filtrarTabelaDataTablePt(elemento);	
+		}
+	}
+}
+
+
+function filtrarTabelaDataTablePt(tabela){
+	$(tabela).DataTable({			
+		"paging":   false,
+		"order": [],
+		language:{
+			"decimal":        ",",
+			"emptyTable":     "Nenhum registro encontrado",
+			"info":           "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+			"infoEmpty":      "Mostrando de 0 até 0 de 0 registros",
+			"infoFiltered":   "(Filtrados de _MAX_ registros)",
+			"infoPostFix":    "",
+			"thousands":      ".",
+			"lengthMenu":     "_MENU_ resultados por página",
+			"loadingRecords": "Carregando...",
+			"processing":     "Processando...",
+			"search":         "Pesquisar: <i class='fa fa-search primary-text'></i> ",
+			"searchPlaceholder":"Pesquisar",
+			"zeroRecords":    "Nenhum registro encontrado",
+			"paginate": {
+				"first":      "Primeiro",
+				"last":       "Último",
+				"next":       "Próximo",
+				"previous":   "Anterior"
+			},
+			"aria": {
+				"sortAscending":  ": Ordenar colunas de forma ascendente",
+				"sortDescending": ": Ordenar colunas de forma descendente"
+			}
+		}	
 	});
 }
 

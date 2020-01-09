@@ -58,7 +58,7 @@
               <%}%>
            
               <% if(usuario.nivel < 3) {%>
-                <a class="btn-floating btn waves-effect waves-light green ajax-load tooltipped" data-position="top" data-tooltip="Editar" href="/sistema/pagamentos/editar/<%= data[i].id_prevista %>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                <a class="btn-floating btn waves-effect waves-light green ajax-load tooltipped" data-position="top" data-tooltip="Editar" href="/sistema/pagamentos/editar/<%= data[i].id%>"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                 <a class="btn-floating btn waves-effect waves-light red modal-remover-mount tooltipped" data-position="top" data-tooltip="Remover" data-href="#modaldeletar" data-id='<%= data[i].id %>' data-texto='Você tem certeza que quer deletar '<%= data[i].nome_fantasia %>'? '' data-to="/sistema/pagamentos/desativar" data-back="/sistema/pagamentos"><i class="fa fa-minus" aria-hidden="true"></i></a>
               <%}%>
             </td>

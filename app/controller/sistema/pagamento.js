@@ -16,10 +16,10 @@ var parseurl = require('parseurl');
 router.use(function (req, res, next) {
 	var pathname = parseurl(req).pathname;
 	if ((pathname.indexOf('cadastrar') != -1 || pathname.indexOf('editar') != -1 || pathname.indexOf('desativar') != -1) && req.session.usuario.nivel == 3) {
-   res.redirect('/sistema/pagamentos');
- }else{
- 	next();
- }	
+		res.redirect('/sistema/pagamentos');
+	}else{
+		next();
+	}	
 });
 
 /* GET pagina inicial. */
@@ -36,19 +36,24 @@ router.get('/cadastrar', function(req, res, next) {
 	});		
 });
 
-	/* GET pagina de editar. */
+/* GET pagina de editar. */
 router.get('/editar/:id', function(req, res, next) {
 	model.Empresas().then(data_empresa => {
+		console.log('----------- data Empresa --------');
+		console.log(data_empresa);
+		console.log('---------------------------------');
 		data['empresas'] = data_empresa;
-		model.Ver_Pagamento(req.params.id).then(data_pagamento => {		
-			res.render(req.isAjaxRequest() == true ? 'api' : 'montadorSistema', {html: 'sistema/pagamento/pagamento_editar', data: data_pagamento, usuario: req.session.usuario});
+		model.Ver_Pagamento(req.params.id).then(data_pagamento => {
+			data['pagamento'] = data_pagamento;
+			console.log(data);
+			res.render(req.isAjaxRequest() == true ? 'api' : 'montadorSistema', {html: 'sistema/pagamento/pagamento_editar', data: data, usuario: req.session.usuario});
 		});
 	});
 });		
 
 router.get('/comprovantes/:id', function(req, res, next) {
 	model.Comprovantes(req.params.id).then(data_comprovante => {
-			res.render(req.isAjaxRequest() == true ? 'api' : 'montadorSistema', {html: 'sistema/pagamento/comprovantes', data: data_comprovante, usuario: req.session.usuario});
+		res.render(req.isAjaxRequest() == true ? 'api' : 'montadorSistema', {html: 'sistema/pagamento/comprovantes', data: data_comprovante, usuario: req.session.usuario});
 	});
 });	
 
@@ -84,7 +89,7 @@ router.post('/cadastrar', function(req, res, next) {
 				});
 			});
 		});
-});
+	});
 
 
 router.post('/desativar', function(req, res, next) {
@@ -104,9 +109,9 @@ router.post('/pedir-aprovacao-pagamento', function(req, res, next) {
 	{
 		control.SendMailAttachment('markosss13@gmail.com', 'Pedido de Análise de Pagamento','Envio de Comprovante',
 			'Olá foi enviado um comprovante de pagamento: '+POST.arquivo+' da Empresa '+POST.empresa+ '.'+
-							'<br>Por-favor avaliar se o comprovante está correto conforme o pagamento'+
-							'<br>Por-favor não responda essa mensagem, ela é enviada automaticamente',
-							POST.arquivo,'./assets/files/documentos/'+POST.arquivo);
+			'<br>Por-favor avaliar se o comprovante está correto conforme o pagamento'+
+			'<br>Por-favor não responda essa mensagem, ela é enviada automaticamente',
+			POST.arquivo,'./assets/files/documentos/'+POST.arquivo);
 		var POST_Doc = {id_empresa:POST.id_empresa,arquivo:POST.arquivo,tipo:2};
 		//Se existe arquivo para aprovar colocar ele na pasta
 		model.InsertDocumento(POST_Doc,'Comprovantes').then(dataDocumento => {
@@ -115,8 +120,8 @@ router.post('/pedir-aprovacao-pagamento', function(req, res, next) {
 	else{
 		control.SendMail('markosss13@gmail.com', 'Pedido de Análise de Pagamento','Envio de Comprovante',
 			'Olá o cliente da Empresa '+POST.empresa+' pediu para avaliar o pagamento porém o mesmo não enviou comprovante.'+
-							'<br>Por-favor avaliar se o pedido está correto.'+
-							'<br>Por-favor não responda essa mensagem, ela é enviada automaticamente');
+			'<br>Por-favor avaliar se o pedido está correto.'+
+			'<br>Por-favor não responda essa mensagem, ela é enviada automaticamente');
 	}
 	model.PedirAprovacaoPagamento('pagamentos_comprovantes', POST).then(data=> {
 		res.json(data);
@@ -134,7 +139,7 @@ router.post('/recusar', function(req, res, next) {
 					'Olá seu pagamento referente a '+dadosPagamento[0].descricao +' no valor de R$' +dadosPagamento[0].valor+ '.Foi recusado pelo seguinte motivo:'+
 					'<br>'+POST.motivo_recusar+
 					'<br>Por-favor não responda essa mensagem, ela é enviada automaticamente');
-					res.json(data);
+				res.json(data);
 			});
 		});
 	});
@@ -151,7 +156,7 @@ router.post('/aprovacao-pagamento', function(req, res, next) {
 				control.SendMailAttachment(emailsCliente[0].email,'Pagamento Aprovado pela Incise','Aprovação de Pagamento pela Incise',
 					'Olá foi aprovado o pagamento refente a '+dadosPagamento[0].descricao + ' no valor de R$'+dadosPagamento[0].valor+
 					'<br>Por-favor não responda essa mensagem, ela é enviada automaticamente');
-					res.json(data);
+				res.json(data);
 			});
 		});
 	});
@@ -160,31 +165,31 @@ router.post('/aprovacao-pagamento', function(req, res, next) {
 
 router.post('/atualizar/:id', function(req, res, next) {
 // Recebendo o valor do post
-	POST = req.body;
+POST = req.body;
 
-	model.UpdatePagamento('pagamentos', POST).then(data_clientes => {
-		res.json(data_clientes);
-	});
+model.UpdatePagamento('pagamentos', POST).then(data_clientes => {
+	res.json(data_clientes);
+});
 });
 
 router.post('/uploadpagamento', function(req, res, next) {
-  var sampleFile = req.files.arquivo;
-  var nome = 'pagamento_'+control.DateTimeForFile()+'_'+sampleFile.name;
-  sampleFile.mv('./assets/files/documentos/' + nome,function(err){
-  	if(err)
-    	return res.status(500).send(err);
-   	res.json(nome);
- 	});
+	var sampleFile = req.files.arquivo;
+	var nome = 'pagamento_'+control.DateTimeForFile()+'_'+sampleFile.name;
+	sampleFile.mv('./assets/files/documentos/' + nome,function(err){
+		if(err)
+			return res.status(500).send(err);
+		res.json(nome);
+	});
 });
 
 router.post('/uploadcomprovante', function(req, res, next) {
-  var sampleFile = req.files.arquivo;
-  var nome = 'comprovante_'+control.DateTimeForFile()+'_'+sampleFile.name;
-  sampleFile.mv('./assets/files/documentos/' + nome,function(err){
-  	if(err)
-    	return res.status(500).send(err);
-   	res.json(nome);
- });
+	var sampleFile = req.files.arquivo;
+	var nome = 'comprovante_'+control.DateTimeForFile()+'_'+sampleFile.name;
+	sampleFile.mv('./assets/files/documentos/' + nome,function(err){
+		if(err)
+			return res.status(500).send(err);
+		res.json(nome);
+	});
 });
 
 
